@@ -14,28 +14,40 @@ This project aims to detect chess pieces using Faster R-CNN. The model is traine
 ## 🔧 Installation
 
 ```bash
-pip install torch torchvision torchmetrics
+pip install torch torchvision torchmetrics pycocotools
 ```
 
 ---
 
-## ⚖️ Technologies Used
+## ⚙️ Technologies Used
 
 * **Python**
 * **PyTorch**: Deep learning framework
 * **Torchvision**: Pre-built detection models like Faster R-CNN
 * **Torchmetrics**: For evaluation metrics such as mAP
+* **pycocotools**: For handling COCO-style annotations
+
+---
+
+## ⚙️ Dataset Preparation
+
+* The dataset is in COCO format and includes three sets: `train`, `val`, and `test`.
+* Annotations are filtered to include only two classes: `white-pawn` and `black-pawn`.
+* Category IDs have been manually adjusted to fit model requirements.
 
 ---
 
 ## ⚙️ Training Parameters
 
 * Number of epochs: 5
-* Number of classes: 3 (background + 2 pieces)
+* Batch size: 2
+* Learning rate: 0.005
 * Optimizer: SGD (momentum=0.9, weight\_decay=0.0005)
+* Learning rate scheduler: StepLR
 
 ```python
 model = torchvision.models.detection.fasterrcnn_resnet50_fpn(pretrained=True)
+in_features = model.roi_heads.box_predictor.cls_score.in_features
 model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
 ```
 
@@ -47,19 +59,33 @@ model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
 python train.py
 ```
 
-The code filters annotations to include only the target categories. COCO format annotations are adjusted accordingly.
+* Training script reads annotations, filters relevant categories, and trains the model on the dataset.
+* The trained model is saved after each epoch in the `models/` directory.
+
+---
+
+## 🧪 Testing & Inference
+
+```bash
+python test.py
+```
+
+* Performs inference on test images
+* Displays bounding boxes with labels and confidence scores
+* Optionally saves output images to disk
 
 ---
 
 ## 🔬 Performance Evaluation
 
 * Metric used: **Mean Average Precision (mAP)**
-* Detailed scores:
+* Evaluation script reports:
 
   * mAP
   * mAP\@50
   * mAP\@75
-* Average inference time and model size are also computed.
+  * Average inference time
+  * Model size
 
 ---
 
@@ -67,13 +93,14 @@ The code filters annotations to include only the target categories. COCO format 
 
 ### Why Faster R-CNN?
 
-* High accuracy
-* Excellent performance on small objects (e.g., pawns)
-* Widely used in industrial settings
+* Balances speed and accuracy effectively
+* Especially strong at detecting small and medium-sized objects like chess pieces
+* Region Proposal Network (RPN) ensures precise localization
 
 ### Why ResNet50 + FPN?
 
-* Combines multi-scale features to improve detection performance
+* ResNet50 ensures strong feature extraction
+* Feature Pyramid Network (FPN) enhances detection across multiple scales
 
 ---
 
@@ -81,30 +108,37 @@ The code filters annotations to include only the target categories. COCO format 
 
 ### 1. Industrial Vision Systems
 
-* Differentiating between products with varying colors/shapes
+* Differentiate between parts based on shape or color
 
 ### 2. Quality Control
 
-* Detecting defective or faulty components
+* Detect faulty or missing components on production lines
 
 ### 3. Autonomous Robotics
 
-* Detecting objects to enable appropriate actions
+* Object recognition for navigation or manipulation tasks
 
 ### 4. Inventory Management
 
-* Recognizing different items to update stock levels automatically
+* Automatically recognize and count inventory items
 
 ### 5. Assembly Line Automation
 
-* Controlling robotic arms through part recognition
+* Enable robotic arms to locate and assemble parts accurately
 
 ---
 
-## 📁 Saving the Model
+## 💾 Model Saving
 
-* The model is saved in `.pth` format at the end of each epoch.
-* Saved under the "models" directory.
+* Trained model is saved in `.pth` format after each epoch
+* Saved under the `output/` directory
+
+---
+
+## 💬 Code Structure & Comments
+
+* The code is modular and extensively commented to help new users understand the workflow
+* Major sections include: data loading, model definition, training loop, evaluation, and inference
 
 ---
 
