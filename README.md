@@ -114,17 +114,9 @@ python test.py
 
 * Detect faulty or missing components on production lines
 
-### 3. Autonomous Robotics
-
-* Object recognition for navigation or manipulation tasks
-
-### 4. Inventory Management
+### 3. Inventory Management
 
 * Automatically recognize and count inventory items
-
-### 5. Assembly Line Automation
-
-* Enable robotic arms to locate and assemble parts accurately
 
 ---
 
