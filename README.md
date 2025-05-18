@@ -22,10 +22,17 @@ pip install torch torchvision torchmetrics pycocotools
 ## ⚙️ Technologies Used
 
 * **Python**
-* **PyTorch**: Deep learning framework
+* **PyTorch**: Chosen for its dynamic computation graph and ease of use, making it suitable for research and production.
 * **Torchvision**: Pre-built detection models like Faster R-CNN
 * **Torchmetrics**: For evaluation metrics such as mAP
 * **pycocotools**: For handling COCO-style annotations
+* **Faster R-CNN**: A two-stage object detection model that first proposes regions and then classifies them. It's effective for detecting objects with varying sizes and aspect ratios.
+* **Transfer Learning**: Utilizing a pre-trained ResNet-50 backbone to leverage learned features, reducing training time and improving performance.
+* **Mean Average Precision (mAP)**: Used as the evaluation metric to assess the precision and recall of the model across different thresholds.
+
+
+
+
 
 ---
 
@@ -104,6 +111,7 @@ python test.py
 
 ---
 
+
 ## 🏭 Real-World Applications
 
 ### 1. Industrial Vision Systems
@@ -112,11 +120,11 @@ python test.py
 
 ### 2. Quality Control
 
-* Detect faulty or missing components on production lines
+* Automated detection of defects or anomalies in products on assembly lines, ensuring consistent product quality.
 
 ### 3. Inventory Management
 
-* Automatically recognize and count inventory items
+* Real-time tracking of products and materials using object detection to maintain optimal inventory levels.
 
 ---
 
