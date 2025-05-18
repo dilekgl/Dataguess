@@ -28,7 +28,7 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cp
 
 # Load the trained model
 model = get_model(num_classes)
-model.load_state_dict(torch.load("fastrcnn-pawn-model/output/fasterrcnn_resnet50_epoch_5.pth"))
+model.load_state_dict(torch.load("output/fasterrcnn_resnet50_epoch_5.pth"))
 model.to(device)
 model.eval()  # Set the model to evaluation mode
 
@@ -41,7 +41,7 @@ def prepare_image(image_path):
 
 
 # Load the unseen image
-image_path = "fastrcnn/test.jpg"
+image_path = "test.jpg"
 image_tensor = prepare_image(image_path)
 
 with torch.no_grad():  # Disable gradient computation for inference

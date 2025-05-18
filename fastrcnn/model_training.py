@@ -27,12 +27,12 @@ def get_coco_dataset(img_dir, ann_file):
 
 # Load Datasets
 train_dataset = get_coco_dataset(
-    img_dir="fastrcnn/chess-pieces-fastrcnn/train/images",
+    img_dir="fastrcnn/chess-pieces/train/images",
     ann_file="chess-pieces-coco/train/_annotations.coco.json"
 )
 
 val_dataset = get_coco_dataset(
-    img_dir="fastrcnn/chess-pieces-fastrcnn/valid/images",
+    img_dir="fastrcnn/chess-pieces/valid/images",
     ann_file="chess-pieces-coco/valid/_annotations.coco.json"
 )
 
