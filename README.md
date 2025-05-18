@@ -134,11 +134,3 @@ python test.py
 * Saved under the `output/` directory
 
 ---
-
-## 💬 Code Structure & Comments
-
-* The code is modular and extensively commented to help new users understand the workflow
-* Major sections include: data loading, model definition, training loop, evaluation, and inference
-
----
-
