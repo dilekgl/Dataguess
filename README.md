@@ -56,11 +56,11 @@ model.roi_heads.box_predictor = FastRCNNPredictor(in_features, num_classes)
 ## 🔄 Model Training
 
 ```bash
-python train.py
+python model_training.py
 ```
 
 * Training script reads annotations, filters relevant categories, and trains the model on the dataset.
-* The trained model is saved after each epoch in the `models/` directory.
+* The trained model is saved after each epoch in the `output/` directory.
 
 ---
 
